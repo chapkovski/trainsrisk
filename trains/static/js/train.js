@@ -6,7 +6,6 @@ let width = 30,
     centerX = 200,
     centerY = 200,
     start_angle = 0,
-    end_angle,
     bubble_size = 30;
 
 class Bubble {
@@ -95,7 +94,7 @@ class Arc {
 function setup() {
     let canv = createCanvas(400, 400);
     canv.parent('p5cont');
-    myarc = new Arc(0, PI * 1.5);
+    myarc = new Arc(start_angle, end_angle);
     bubble = new Bubble(200, 200)
 }
 

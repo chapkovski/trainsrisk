@@ -6,10 +6,15 @@
 {% endblock %}
 
 {% block content %}
-    {{ form.difficulty.errors }}
-<div id="p5cont"></div>
-    <input type="hidden" name="difficulty" value="0" id="id_difficulty" />
-    {% next_button %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Instructions:</h5>
+            Click on the arc length which you prefer:
+        </div>
+    </div>
+    <div id="p5cont"></div>
+    <input type="hidden" name="difficulty" value="0" id="id_difficulty"/>
+
 
 {% endblock %}
 {% block scripts %}

@@ -1,3 +1,4 @@
+//TODO: move bubbles and arcs into sep class and export using require, module.export
 let width = 20,
     radius = 100,
     diameter = radius * 2,

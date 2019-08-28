@@ -2,11 +2,13 @@
 {% load otree static %}
 
 {% block title %}
-    Page title
+    Results
 {% endblock %}
 
 {% block content %}
-
+    <div class="alert alert-success">
+        {{ player.task|yesno:'You won!, You lost!' }}
+    </div>
     {% next_button %}
 {% endblock %}
 

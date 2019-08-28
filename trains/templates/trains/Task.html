@@ -6,13 +6,21 @@
 {% endblock %}
 
 {% block content %}
-
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Instructions:</h5>
+            Click on the ball while it is in within the arc
+        </div>
+    </div>
     <div id="p5cont"></div>
     <input type="hidden" name="task" value="False" id="id_task" name="difficulty"/>
     {% next_button %}
 
 {% endblock %}
 {% block scripts %}
+    <script>
+    let end_angle={{ player.difficulty }};
+    </script>
     <script src="{% static 'js/p5.js' %}"></script>
     <script src="{% static 'js/train.js' %}"></script>
 
