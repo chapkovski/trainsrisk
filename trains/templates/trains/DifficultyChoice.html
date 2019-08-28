@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Choosing difficulty
+{% endblock %}
+
+{% block content %}
+    {{ form.difficulty.errors }}
+<div id="p5cont"></div>
+    <input type="hidden" name="difficulty" value="0" id="id_difficulty" />
+    {% next_button %}
+
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/p5.js' %}"></script>
+    <script src="{% static 'js/difficulty.js' %}"></script>
+
+{% endblock %}
