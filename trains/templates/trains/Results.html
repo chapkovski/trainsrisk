@@ -6,8 +6,9 @@
 {% endblock %}
 
 {% block content %}
-    <div class="alert alert-success">
-        {{ player.task|yesno:'You won!, You lost!' }}
+
+    <div class="alert  {% if  player.task == 1 %}alert-success{% else %}alert-danger{% endif %}   ">
+        You {{ player.get_task_display }}!
     </div>
     {% next_button %}
 {% endblock %}

@@ -18,7 +18,7 @@ class Results(Page):
 
 
 page_sequence = [
-    DifficultyChoice,
+    # DifficultyChoice,
     Task,
     Results
 ]

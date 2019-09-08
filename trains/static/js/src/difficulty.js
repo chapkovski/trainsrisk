@@ -1,7 +1,7 @@
 //TODO: move bubbles and arcs into sep class and export using require, module.export
 import p5 from "./p5";
 import {Bubble} from './bubble';
-import {Arc} from './arc';
+import {Arc, ChoosableArc} from './arc';
 import *  as c from './constants';
 
 let bubble,
@@ -12,7 +12,7 @@ const s = (p) => {
         p.createCanvas(c.canv_size, c.canv_size);
         bubble = new Bubble(p);
 
-        arc = new Arc(p,6, 145,150);
+        arc = new ChoosableArc(p,6, 145,150);
 
     };
 

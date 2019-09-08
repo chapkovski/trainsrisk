@@ -15,6 +15,7 @@ export class Arc {
         this.col = this.p.color(col, col, 0);
         this.width = width;
         this.radius = radius;
+        this.initial_end_angle = angle1;
     }
 
 
@@ -46,14 +47,25 @@ export class Arc {
     }
 
     do_if_clicked() {
-        console.log('ARC CLICKED', this.end_angle);
-        $('#id_difficulty').val(this.end_angle);
-        // $('#form').submit(); TODO
+
+        console.log('arc clicked!');
     }
 
     clicked() {
+        let _is_clicked = this.is_clicked();
         if (this.is_clicked()) {
-            this.do_if_clicked()
+            this.do_if_clicked();
         }
+        ;
+        return _is_clicked;
     };
 };
+
+export class ChoosableArc extends Arc {
+    do_if_clicked() {
+        super.do_if_clicked()
+
+        $('#id_difficulty').val(this.end_angle);
+        $('#form').submit();
+    }
+}

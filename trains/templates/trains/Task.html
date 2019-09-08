@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block content %}
+    {{ form.task.errors }}
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Instructions:</h5>
@@ -13,7 +14,7 @@
         </div>
     </div>
     <div id="p5cont"></div>
-    <input type="hidden" name="task" value="False" id="id_task" name="difficulty"/>
+    <input type="hidden" name="task" value="False" id="id_task" name="task"/>
     {% next_button %}
 
 {% endblock %}
@@ -21,7 +22,6 @@
     <script>
     let end_angle={{ player.difficulty }};
     </script>
-    <script src="{% static 'js/p5.js' %}"></script>
-    <script src="{% static 'js/train.js' %}"></script>
+            <script src="{% static 'js/dist/train.js' %}"></script>
 
 {% endblock %}

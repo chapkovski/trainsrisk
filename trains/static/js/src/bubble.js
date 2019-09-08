@@ -1,12 +1,13 @@
 import *  as c from './constants';
-let angle = -Math.PI/2;
+
+let angle = -Math.PI / 2;
 
 export class Bubble {
     constructor(p) {
         this.p = p;
 
         this.col = this.p.color(255, 100, 76);
-        this.diameter = 30;
+        this.diameter = 25;
     }
 
 
@@ -18,6 +19,7 @@ export class Bubble {
         this.y = c.centerY + c.radius * this.p.sin(angle);
         this.p.ellipse(this.x, this.y, this.diameter, this.diameter);
         angle = angle + c.speed;
+        this.cur_angle = this.p.atan2(this.y - c.centerY, this.x - c.centerX) + Math.PI / 2;
     }
 
     is_clicked() {
@@ -26,8 +28,12 @@ export class Bubble {
     }
 
     clicked() {
-        if (this.is_clicked()) {
+        let _is_clicked = this.is_clicked();
+        if (_is_clicked) {
             console.log('circle clicked');
         }
+        ;
+        return _is_clicked;
+
     };
 };
