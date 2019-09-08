@@ -1,14 +1,18 @@
 //TODO: move bubbles and arcs into sep class and export using require, module.export
 import p5 from "./p5";
 import {Bubble} from './bubble';
+import {Arc} from './arc';
 import *  as c from './constants';
-let bubble;
 
+let bubble,
+    arc;
 const s = (p) => {
 
     p.setup = function () {
-        p.createCanvas(400, 400);
-        bubble = new Bubble(p, 100, 100);
+        p.createCanvas(c.canv_size, c.canv_size);
+        bubble = new Bubble(p);
+
+        arc = new Arc(p,6, 145,150);
 
     };
 
@@ -19,9 +23,11 @@ const s = (p) => {
         p.noFill();
         p.ellipse(c.centerX, c.centerY, c.diameter);
         bubble.display();
+        arc.display();
     };
     p.mousePressed = function () {
-        console.log('pizda');
+        bubble.clicked();
+        arc.clicked();
     };
 };
 

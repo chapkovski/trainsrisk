@@ -1,12 +1,17 @@
-import {SQUARE, PI} from "./p5";
+import {SQUARE, PI, OPEN} from "./p5";
+import *  as c from './constants';
+
+let correction = -Math.PI / 2,
+    start_angle = 0,
+    width = 20;
 
 export class Arc {
-    constructor(angle1, radius, col) {
+    constructor(p, angle1, radius, col) {
         this.p = p;
-        this.centerX = centerX;
-        this.centerY = centerY;
-        this.start_angle = start_angle;
-        this.end_angle = angle1;
+        this.centerX = c.centerX;
+        this.centerY = c.centerY;
+        this.start_angle = start_angle + correction;
+        this.end_angle = angle1 + correction;
         this.col = this.p.color(col, col, 0);
         this.width = width;
         this.radius = radius;
@@ -16,7 +21,7 @@ export class Arc {
     display() {
         this.p.stroke(this.col);
         this.p.strokeWeight(this.width);
-        this.p.strokeCap(SQUARE);
+        this.p.strokeCap('butt');
         this.p.noFill();
         this.p.arc(this.centerX, this.centerY, this.radius * 2, this.radius * 2, this.start_angle, this.end_angle, OPEN);
     }
@@ -33,9 +38,9 @@ export class Arc {
     }
 
     _is_within_angles() {
-        var innerangle = atan2(this.p.mouseY - this.centerY, this.p.mouseX - this.centerX);
-        if (innerangle < 0) {
-            innerangle = 2 * PI - abs(innerangle);
+        let innerangle = this.p.atan2(this.p.mouseY - this.centerY, this.p.mouseX - this.centerX);
+        if (innerangle < correction) {
+            innerangle = 2 * Math.PI + innerangle;
         }
         return (innerangle >= this.start_angle && innerangle <= this.end_angle);
     }
@@ -43,7 +48,7 @@ export class Arc {
     do_if_clicked() {
         console.log('ARC CLICKED', this.end_angle);
         $('#id_difficulty').val(this.end_angle);
-        $('#form').submit();
+        // $('#form').submit(); TODO
     }
 
     clicked() {

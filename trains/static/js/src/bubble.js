@@ -1,10 +1,10 @@
 import *  as c from './constants';
-let angle = 0;
+let angle = -Math.PI/2;
+
 export class Bubble {
-    constructor(p, x, y) {
+    constructor(p) {
         this.p = p;
-        this.x = x;
-        this.y = y;
+
         this.col = this.p.color(255, 100, 76);
         this.diameter = 30;
     }
@@ -21,7 +21,7 @@ export class Bubble {
     }
 
     is_clicked() {
-        var d = dist(this.p.mouseX, this.p.mouseY, this.x, this.y);
+        var d = this.p.dist(this.p.mouseX, this.p.mouseY, this.x, this.y);
         return (d < this.diameter / 2);
     }
 
