@@ -28,8 +28,8 @@ const s = (p) => {
         arc.display();
         p.fill(100);
         p.stroke(100);
-        let x = c.centerX + c.radius * p.cos(4 - Math.PI / 2);
-        let y = c.centerY + c.radius * p.sin(4 - Math.PI / 2);
+        let x = c.centerX + c.radius * p.cos(.75 * Math.PI );
+        let y = c.centerY + c.radius * p.sin(.75 * Math.PI );
 
         let target = p.createVector(x - c.centerX, y - c.centerY);
         let cur_pos = p.createVector(bubble.x - c.centerX, bubble.y - c.centerY);
