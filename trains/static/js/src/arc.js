@@ -1,7 +1,7 @@
 import {SQUARE, PI, OPEN} from "./p5";
 import *  as c from './constants';
 
-let correction = -Math.PI / 2,
+let correction = -Math.PI / 4,
     start_angle = 0,
     width = 20;
 

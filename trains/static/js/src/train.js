@@ -13,7 +13,7 @@ const s = (p) => {
     p.setup = function () {
         p.createCanvas(c.canv_size, c.canv_size);
         bubble = new Bubble(p);
-        arc = new Arc(p, 4, 100, 150);
+        arc = new Arc(p, Math.PI, 100, 150);
 
     };
 
