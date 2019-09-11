@@ -15,14 +15,13 @@ export class Arc {
         this.col = this.p.color(col, col, 0);
         this.width = width;
         this.radius = radius;
-        this.initial_end_angle = angle1;
     }
 
 
     display() {
         this.p.stroke(this.col);
         this.p.strokeWeight(this.width);
-        this.p.strokeCap('butt');
+        this.p.strokeCap('round');
         this.p.noFill();
         this.p.arc(this.centerX, this.centerY, this.radius * 2, this.radius * 2, this.start_angle, this.end_angle, OPEN);
     }

@@ -26,31 +26,24 @@ const s = (p) => {
         bubble.display();
 
         arc.display();
-        p.fill(100);
-        p.stroke(100);
-        let x = c.centerX + c.radius * p.cos(.75 * Math.PI );
-        let y = c.centerY + c.radius * p.sin(.75 * Math.PI );
-
-        let target = p.createVector(x - c.centerX, y - c.centerY);
-        let cur_pos = p.createVector(bubble.x - c.centerX, bubble.y - c.centerY);
-        let angle = target.angleBetween(cur_pos);
-
-        if (angle < 0.005 && game === undefined) {
-            game = 0;
-            alert('YOU LOST!');
-            deliver_game();
-
-        }
+        // bubble.is_within_arc(arc);
 
 
     };
     p.mousePressed = function () {
-        let win = bubble.clicked() && arc.clicked();
-        if (win) {
-            game = 1;
-            alert('YOU WON!!!');
-            deliver_game();
-        }
+        bubble.toggle();
+        bubble.is_within_arc(arc);
+        //
+        // let win = bubble.is_within_arc(arc);
+        // if (win) {
+        //     game = 1;
+        //     alert('YOU WON!!!');
+        //     deliver_game();
+        // } else {
+        //     game = 0;
+        //     alert('YOU LOST!!!');
+        //     deliver_game();
+        // }
     };
 };
 let deliver_game = () => {
