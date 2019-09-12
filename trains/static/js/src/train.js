@@ -27,20 +27,22 @@ const s = (p) => {
         arc.display();
     };
     let event_happened = () => {
-        bubble.is_within_arc(arc);
-        //
-        let win = bubble.is_within_arc(arc);
-        if (win) {
-            game = 1;
-            alert('YOU WON!!!');
-            deliver_game();
-        } else {
-            game = 0;
-            alert('YOU LOST!!!');
-            deliver_game();
+
+        let in_canvas = (p.mouseX > 0 && p.mouseX < c.canv_size && p.mouseY > 0 && p.mouseY < c.canv_size);
+        if (in_canvas) {
+            let win = bubble.is_within_arc(arc);
+            if (win) {
+                game = 1;
+                alert('YOU WON!!!');
+                deliver_game();
+            } else {
+                game = 0;
+                alert('YOU LOST!!!');
+                deliver_game();
+            }
         }
     }
-    p.mousePressed =  () => {
+    p.mousePressed = () => {
         event_happened();
     };
     p.touchEnded = () => {

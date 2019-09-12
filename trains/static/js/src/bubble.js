@@ -5,7 +5,7 @@ let angle = -Math.PI / 2;
 export class Bubble {
     constructor(p) {
         this.p = p;
-        this.speed = c.speed
+        // this.speed = speed;
         this.col = this.p.color(255, 100, 76);
         this.diameter = 25;
     }
@@ -18,12 +18,10 @@ export class Bubble {
         this.x = c.centerX + c.radius * this.p.cos(angle);
         this.y = c.centerY + c.radius * this.p.sin(angle);
         this.p.ellipse(this.x, this.y, this.diameter, this.diameter);
-        angle = angle + this.speed;
+        angle = angle + speed;
     }
 
-    toggle() {
-        this.speed = (this.speed === 0 ? c.speed : 0);
-    }
+
 
 
 

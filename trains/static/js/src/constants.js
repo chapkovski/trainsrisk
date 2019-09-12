@@ -1,4 +1,5 @@
-export let speed = 0.2,
+export let
+    // speed = 0.2,
     centerX = 200,
     centerY = 200,
     radius = 100,
