@@ -18,36 +18,31 @@ const s = (p) => {
     };
 
     p.draw = function () {
-        p.background(255);
+        p.background('green');
         p.stroke(1);
         p.strokeWeight(1);
         p.noFill();
         p.ellipse(c.centerX, c.centerY, c.diameter);
         bubble.display();
-
         arc.display();
-        // bubble.is_within_arc(arc);
-
-
     };
     p.mousePressed = function () {
-        bubble.toggle();
         bubble.is_within_arc(arc);
         //
-        // let win = bubble.is_within_arc(arc);
-        // if (win) {
-        //     game = 1;
-        //     alert('YOU WON!!!');
-        //     deliver_game();
-        // } else {
-        //     game = 0;
-        //     alert('YOU LOST!!!');
-        //     deliver_game();
-        // }
+        let win = bubble.is_within_arc(arc);
+        if (win) {
+            game = 1;
+            alert('YOU WON!!!');
+            deliver_game();
+        } else {
+            game = 0;
+            alert('YOU LOST!!!');
+            deliver_game();
+        }
     };
 };
 let deliver_game = () => {
     $('#id_task').val(game);
-    $('#form').submit();
+    // $('#form').submit();
 }
 let myp5 = new p5(s, 'p5cont');

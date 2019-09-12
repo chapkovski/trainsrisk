@@ -3,7 +3,7 @@ import *  as c from './constants';
 
 let correction = -Math.PI / 4,
     start_angle = 0,
-    width = 20;
+    width = 30;
 
 export class Arc {
     constructor(p, angle1, radius, col) {
@@ -12,7 +12,7 @@ export class Arc {
         this.centerY = c.centerY;
         this.start_angle = start_angle + correction;
         this.end_angle = angle1 + correction;
-        this.col = this.p.color(col, col, 0);
+        this.col = this.p.color(255, 255, 0, 200);
         this.width = width;
         this.radius = radius;
     }

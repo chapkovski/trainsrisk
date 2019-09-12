@@ -43,8 +43,8 @@ export class Bubble {
 
     is_within_arc(arc) {
         this.p.translate(c.canv_size / 2, c.canv_size / 2);
-        let a = this.p.atan2(this.y- c.canv_size/ 2, this.x - c.canv_size/ 2);
-        console.log(this.p.degrees(a));
+        let a = this.p.atan2(this.y - c.canv_size / 2, this.x - c.canv_size / 2);
+        return (arc.start_angle < a && a < arc.end_angle);
 
     }
 };
