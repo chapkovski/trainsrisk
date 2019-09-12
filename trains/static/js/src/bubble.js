@@ -19,27 +19,13 @@ export class Bubble {
         this.y = c.centerY + c.radius * this.p.sin(angle);
         this.p.ellipse(this.x, this.y, this.diameter, this.diameter);
         angle = angle + this.speed;
-        this.cur_angle = this.p.atan2(this.y - c.centerY, this.x - c.centerX) + Math.PI / 2;
     }
 
     toggle() {
         this.speed = (this.speed === 0 ? c.speed : 0);
     }
 
-    is_clicked() {
-        var d = this.p.dist(this.p.mouseX, this.p.mouseY, this.x, this.y);
-        return (d < this.diameter / 2);
-    }
 
-    clicked() {
-        let _is_clicked = this.is_clicked();
-        if (_is_clicked) {
-            console.log('circle clicked');
-        }
-        ;
-        return _is_clicked;
-
-    };
 
     is_within_arc(arc) {
         this.p.translate(c.canv_size / 2, c.canv_size / 2);

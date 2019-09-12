@@ -46,7 +46,6 @@ export class Arc {
     }
 
     do_if_clicked() {
-
         console.log('arc clicked!');
     }
 

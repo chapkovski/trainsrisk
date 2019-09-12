@@ -26,7 +26,7 @@ const s = (p) => {
         bubble.display();
         arc.display();
     };
-    p.mousePressed = function () {
+    let event_happened = () => {
         bubble.is_within_arc(arc);
         //
         let win = bubble.is_within_arc(arc);
@@ -39,7 +39,13 @@ const s = (p) => {
             alert('YOU LOST!!!');
             deliver_game();
         }
+    }
+    p.mousePressed =  () => {
+        event_happened();
     };
+    p.touchEnded = () => {
+        event_happened();
+    }
 };
 let deliver_game = () => {
     $('#id_task').val(game);
