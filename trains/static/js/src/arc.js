@@ -1,18 +1,19 @@
 import {SQUARE, PI, OPEN} from "./p5";
 import *  as c from './constants';
+import * as p from 'script-loader!./p5.js';
 
 let correction = -Math.PI / 4,
     start_angle = 0,
     width = 30;
 
 export class Arc {
-    constructor(p, angle1, radius, col) {
+    constructor(p, start_angle=0, end_angle, radius, col) {
         this.p = p;
         this.centerX = c.centerX;
         this.centerY = c.centerY;
         this.start_angle = start_angle + correction;
-        this.end_angle = angle1 + correction;
-        this.col = this.p.color(255, 255, 0, 200);
+        this.end_angle = end_angle + correction;
+        this.col = p.color(col, col, col, 200);
         this.width = width;
         this.radius = radius;
     }
@@ -21,8 +22,9 @@ export class Arc {
     display() {
         this.p.stroke(this.col);
         this.p.strokeWeight(this.width);
-        this.p.strokeCap('round');
+        this.p.strokeCap("butt");
         this.p.noFill();
+
         this.p.arc(this.centerX, this.centerY, this.radius * 2, this.radius * 2, this.start_angle, this.end_angle, OPEN);
     }
 

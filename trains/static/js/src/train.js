@@ -9,11 +9,13 @@ let bubble,
     game;
 
 const s = (p) => {
-
+    let arc2, arc3;
     p.setup = function () {
         p.createCanvas(c.canv_size, c.canv_size);
         bubble = new Bubble(p);
-        arc = new Arc(p, Math.PI, 100, 150);
+        arc = new Arc(p, 0, Math.PI*.75, 100, 150);
+        arc2 = new Arc(p, Math.PI*.75, Math.PI+.5, 100, 250);
+        arc3 = new Arc(p, Math.PI+.55, Math.PI+0.75, 100, 75);
 
     };
 
@@ -25,6 +27,8 @@ const s = (p) => {
         p.ellipse(c.centerX, c.centerY, c.diameter);
         bubble.display();
         arc.display();
+        arc2.display();
+        arc3.display();
     };
     let event_happened = () => {
 
