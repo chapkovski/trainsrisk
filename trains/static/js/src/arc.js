@@ -25,7 +25,12 @@ export class Arc {
         this.p.strokeCap("butt");
         this.p.noFill();
 
-        this.p.arc(this.centerX, this.centerY, this.radius * 2, this.radius * 2, this.start_angle, this.end_angle, OPEN);
+
+        this.p.arc(this.centerX, this.centerY, this.radius * 2, this.radius * 2, this.start_angle, this.end_angle, p.OPEN);
+        this.p.stroke('yellow');
+        this.p.strokeWeight(2);
+        this.p.arc(this.centerX, this.centerY, this.radius * 2-this.width/2-10, this.radius * 2-this.width/2-10, this.start_angle, this.end_angle, p.OPEN);
+        this.p.arc(this.centerX, this.centerY, this.radius * 2+this.width/2+10, this.radius * 2+this.width/2+10, this.start_angle, this.end_angle, p.OPEN);
     }
 
     is_clicked() {
