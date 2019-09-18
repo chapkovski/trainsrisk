@@ -22,12 +22,11 @@ export class Bubble {
     }
 
 
-
-
-
     is_within_arc(arc) {
         this.p.translate(c.canv_size / 2, c.canv_size / 2);
         let a = this.p.atan2(this.y - c.canv_size / 2, this.x - c.canv_size / 2);
+        let corr = this.x - c.canv_size / 2 < 0 && this.y - c.canv_size / 2 < 0;
+        a = corr === false ? a : Math.PI * 2 + a;
         return (arc.start_angle < a && a < arc.end_angle);
 
     }

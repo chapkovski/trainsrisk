@@ -26,8 +26,15 @@
     <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
 {% endblock %}
 {% block scripts %}
+
+    <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+            integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+            crossorigin="anonymous"></script>
     <script>
-        var speed = 0.05;
+        var speed = 0.01;
+        var choose_difficulty = false
+        var chosen_arc_id = {{player.difficulty|json  }};
         $('span.speed-ind').html(speed);
         refresh_speed = () => {
             speed = $("#speed_slider").slider("value") / 100;
@@ -39,7 +46,7 @@
                 range: "min",
                 min: 0,
                 max: 30,
-                step:0.1,
+                step: 0.1,
                 value: speed * 100,
                 slide: refresh_speed,
                 change: refresh_speed
@@ -51,11 +58,7 @@
             src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
             integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
             crossorigin="anonymous"></script>
-    <script>
-        {#let end_angle ={{ player.difficulty }};#}
 
-
-    </script>
     <script src="{% static 'js/dist/train.js' %}"></script>
 
 {% endblock %}

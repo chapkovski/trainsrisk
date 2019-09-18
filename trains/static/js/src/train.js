@@ -1,22 +1,30 @@
 //TODO: move bubbles and arcs into sep class and export using require, module.export
 import p5 from "./p5";
 import {Bubble} from './bubble';
-import {Arc} from './arc';
+import {Arc, ChoosableArc} from './arc';
 import *  as c from './constants';
 
 let bubble,
-    arc,
-    game;
+    game,
+    arcs = [];
 
 const s = (p) => {
-    let arc2, arc3;
+    let chosen_arc;
     p.setup = function () {
         p.createCanvas(c.canv_size, c.canv_size);
         bubble = new Bubble(p);
-        arc = new Arc(p, 0, Math.PI*.75, 100, 150);
-        arc2 = new Arc(p, Math.PI*.75, Math.PI+.5, 100, 250);
-        arc3 = new Arc(p, Math.PI+.55, Math.PI+0.75, 100, 75);
-
+        c.arc_lengths.forEach((i, j) => {
+            let start_angle = j === 0 ? 0 : arcs[j - 1].uncorrected_angles.end;
+            let end_angle = start_angle + i;
+            let color = c.colors[j];
+            let A = choose_difficulty === true ? ChoosableArc : Arc;
+            let t = new A({p: p, end_angle: end_angle, col: color, chosen: false, start_angle: start_angle, id: j});
+            arcs.push(t);
+        });
+        if (choose_difficulty === false) {
+            chosen_arc = arcs[chosen_arc_id];
+            chosen_arc.chosen = true;
+        }
     };
 
     p.draw = function () {
@@ -26,24 +34,35 @@ const s = (p) => {
         p.noFill();
         p.ellipse(c.centerX, c.centerY, c.diameter);
         bubble.display();
-        arc.display();
-        arc2.display();
-        arc3.display();
+        arcs.forEach((i, j) => {
+            i.display();
+        })
+
     };
     let event_happened = () => {
-
         let in_canvas = (p.mouseX > 0 && p.mouseX < c.canv_size && p.mouseY > 0 && p.mouseY < c.canv_size);
         if (in_canvas) {
-            let win = bubble.is_within_arc(arc);
-            if (win) {
-                game = 1;
-                alert('YOU WON!!!');
-                deliver_game();
+            if (choose_difficulty === true) {
+                arcs.forEach((i, j) => {
+                    if (i.is_clicked()) {
+                        arcs.forEach((l, m) => {
+                            l.chosen = false
+                        });
+                        i.chosen = true;
+                        i.do_if_clicked();
+                    }
+                });
             } else {
-                game = 0;
-                alert('YOU LOST!!!');
-                deliver_game();
+                if (bubble.is_within_arc(chosen_arc) === true) {
+                    alert('YOU WON!');
+
+                } else {
+                    alert('YOU LOST');
+                }
+                $('#id_task').val((bubble.is_within_arc(chosen_arc) === true) ? 1 : 0);
             }
+
+
         }
     }
     p.mousePressed = () => {

@@ -15,10 +15,16 @@
     </div>
     <div id="p5cont"></div>
     <input type="hidden" name="difficulty" value="0" id="id_difficulty"/>
-
+    {% next_button %}
 
 {% endblock %}
 {% block scripts %}
-    <script src="{% static 'js/dist/difficulty.js' %}"></script>
+    <script>
+        var speed = 0.01;
+        var choose_difficulty = true;
+
+    </script>
+
+    <script src="{% static 'js/dist/train.js' %}"></script>
 
 {% endblock %}

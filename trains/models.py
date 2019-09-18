@@ -25,5 +25,5 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    difficulty = models.FloatField()
+    difficulty = models.IntegerField()
     task = models.IntegerField(choices=[(0, 'Lost'),(1, 'Won')])

@@ -2,20 +2,25 @@ import {SQUARE, PI, OPEN} from "./p5";
 import *  as c from './constants';
 import * as p from 'script-loader!./p5.js';
 
-let correction = -Math.PI / 4,
-    start_angle = 0,
+let start_angle = 0,
     width = 30;
 
 export class Arc {
-    constructor(p, start_angle=0, end_angle, radius, col) {
+    constructor({p, start_angle = 0, end_angle, radius = c.radius, col, chosen = false, id = undefined}) {
+        this.id = id;
         this.p = p;
+        this.uncorrected_angles = {'start': start_angle, 'end': end_angle};
+        let levels = p.color(col).levels;
+        levels[3] = c.arc_transparency;
         this.centerX = c.centerX;
         this.centerY = c.centerY;
-        this.start_angle = start_angle + correction;
-        this.end_angle = end_angle + correction;
-        this.col = p.color(col, col, col, 200);
+        this.start_angle = start_angle + c.correction;
+        this.end_angle = end_angle + c.correction;
+        this.col = p.color(levels);
         this.width = width;
         this.radius = radius;
+        this.chosen = chosen;
+        this._is_clicked = false;
     }
 
 
@@ -24,13 +29,15 @@ export class Arc {
         this.p.strokeWeight(this.width);
         this.p.strokeCap("butt");
         this.p.noFill();
-
-
         this.p.arc(this.centerX, this.centerY, this.radius * 2, this.radius * 2, this.start_angle, this.end_angle, p.OPEN);
-        this.p.stroke('yellow');
-        this.p.strokeWeight(2);
-        this.p.arc(this.centerX, this.centerY, this.radius * 2-this.width/2-10, this.radius * 2-this.width/2-10, this.start_angle, this.end_angle, p.OPEN);
-        this.p.arc(this.centerX, this.centerY, this.radius * 2+this.width/2+10, this.radius * 2+this.width/2+10, this.start_angle, this.end_angle, p.OPEN);
+        if (this.chosen) {
+
+            this.p.stroke('black');
+            this.p.strokeWeight(2);
+            this.p.arc(this.centerX, this.centerY, this.radius * 2 - this.width, this.radius * 2 - this.width, this.start_angle, this.end_angle, p.OPEN);
+            this.p.arc(this.centerX, this.centerY, this.radius * 2 + this.width, this.radius * 2 + this.width, this.start_angle, this.end_angle, p.OPEN);
+        }
+
     }
 
     is_clicked() {
@@ -46,7 +53,7 @@ export class Arc {
 
     _is_within_angles() {
         let innerangle = this.p.atan2(this.p.mouseY - this.centerY, this.p.mouseX - this.centerX);
-        if (innerangle < correction) {
+        if (innerangle < c.correction) {
             innerangle = 2 * Math.PI + innerangle;
         }
         return (innerangle >= this.start_angle && innerangle <= this.end_angle);
@@ -57,20 +64,20 @@ export class Arc {
     }
 
     clicked() {
-        let _is_clicked = this.is_clicked();
+        this._is_clicked = this.is_clicked();
         if (this.is_clicked()) {
             this.do_if_clicked();
+
         }
         ;
-        return _is_clicked;
+        return this;
     };
 };
 
 export class ChoosableArc extends Arc {
     do_if_clicked() {
-        super.do_if_clicked()
+        super.do_if_clicked();
+        $('#id_difficulty').val(this.id);
 
-        $('#id_difficulty').val(this.end_angle);
-        $('#form').submit();
     }
 }
