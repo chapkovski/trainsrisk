@@ -18,6 +18,9 @@ export class Bubble {
         this.x = c.centerX + c.radius * this.p.cos(angle);
         this.y = c.centerY + c.radius * this.p.sin(angle);
         this.p.ellipse(this.x, this.y, this.diameter, this.diameter);
+        this.p.fill('black');
+        this.p.noStroke();
+        this.p.ellipse(this.x, this.y, 5, 5);
         angle = angle + speed;
     }
 
