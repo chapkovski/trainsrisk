@@ -38,14 +38,14 @@
         $('span.speed-ind').html(speed);
         refresh_speed = () => {
             speed = $("#speed_slider").slider("value") / 100;
-            $('span.speed-ind').html(speed);
+            $('span.speed-ind').html(speed.toFixed(3));
         }
         $(function () {
             $("#speed_slider").slider({
                 orientation: "horizontal",
                 range: "min",
                 min: 0,
-                max: 30,
+                max: 3,
                 step: 0.1,
                 value: speed * 100,
                 slide: refresh_speed,
