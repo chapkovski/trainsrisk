@@ -79,6 +79,8 @@ const s = (p) => {
                     bubble.info = false;
                     arcs.forEach(l => l.set_transparency(255));
                     bubble.change_bubble_shape('black',1)
+                    bubble.set_to_start()
+
                 }, 3000);
 
                 $('#id_task').val((bubble.is_within_arc(chosen_arc) === true) ? 1 : 0);

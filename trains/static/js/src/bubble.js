@@ -1,6 +1,7 @@
 import *  as c from './constants';
 
 let angle = -Math.PI / 2;
+let initial_angle = angle;
 
 export class Bubble {
     constructor(p) {
@@ -40,7 +41,9 @@ export class Bubble {
         this.p.ellipse(this.x, this.y, 5, 5);
         angle = angle + speed;
     }
-
+    set_to_start() {
+        angle = initial_angle;
+    }
     change_bubble_shape(strokecolor, strokeweight) {
         this.strokeweight = strokeweight;
         this.strokecolor = strokecolor;
