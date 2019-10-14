@@ -8,13 +8,30 @@ export class Bubble {
         // this.speed = speed;
         this.col = this.p.color(255, 100, 76);
         this.diameter = 25;
+        this.strokeweight = 1;
+        this.strokecolor = 'black'
+        this.counter = 0
+        this.info = false
     }
 
 
     display() {
-        this.p.stroke(0);
-        this.p.strokeWeight(1);
-        this.p.fill(this.col);
+        this.counter += 1
+        if (this.info === true) {
+            if (this.counter % 20 < 10) {
+                this.p.stroke(this.strokecolor);
+                this.p.strokeWeight(this.strokeweight);
+                this.p.fill(this.col);
+            } else {
+                this.p.stroke('black');
+                this.p.strokeWeight(1);
+            }
+
+        } else {
+            this.p.stroke(this.strokecolor);
+            this.p.strokeWeight(this.strokeweight);
+            this.p.fill(this.col);
+        }
         this.x = c.centerX + c.radius * this.p.cos(angle);
         this.y = c.centerY + c.radius * this.p.sin(angle);
         this.p.ellipse(this.x, this.y, this.diameter, this.diameter);
@@ -22,6 +39,11 @@ export class Bubble {
         this.p.noStroke();
         this.p.ellipse(this.x, this.y, 5, 5);
         angle = angle + speed;
+    }
+
+    change_bubble_shape(strokecolor, strokeweight) {
+        this.strokeweight = strokeweight;
+        this.strokecolor = strokecolor;
     }
 
 

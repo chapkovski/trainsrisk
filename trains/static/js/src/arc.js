@@ -6,12 +6,20 @@ let start_angle = 0,
     width = 30;
 
 export class Arc {
-    constructor({p, start_angle = 0, end_angle, radius = c.radius, col, chosen = false, id = undefined}) {
+    constructor({
+                    p, start_angle = 0,
+                    transparency = c.arc_transparency,
+                    end_angle,
+                    radius = c.radius,
+                    col,
+                    chosen = false,
+                    id = undefined
+                }) {
         this.id = id;
         this.p = p;
         this.uncorrected_angles = {'start': start_angle, 'end': end_angle};
         let levels = p.color(col).levels;
-        levels[3] = c.arc_transparency;
+        levels[3] = transparency;
         this.centerX = c.centerX;
         this.centerY = c.centerY;
         this.start_angle = start_angle + c.correction;
@@ -57,6 +65,14 @@ export class Arc {
             innerangle = 2 * Math.PI + innerangle;
         }
         return (innerangle >= this.start_angle && innerangle <= this.end_angle);
+    }
+
+    set_transparency(alpha) {
+        let p = this.p;
+        let col = this.col
+        let levels = p.color(col).levels;
+        levels[3] = alpha;
+        this.col = p.color(levels);
     }
 
     do_if_clicked() {
