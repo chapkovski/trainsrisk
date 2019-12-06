@@ -13,7 +13,8 @@ Your app description
 class Constants(BaseConstants):
     name_in_url = 'trains'
     players_per_group = None
-    num_rounds = 1
+    num_rounds = 10
+    speed= 0.01
 
 
 class Subsession(BaseSubsession):

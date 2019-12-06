@@ -62,31 +62,18 @@ const s = (p) => {
                 });
             } else {
 
-                if (bubble.is_within_arc(chosen_arc) === true) {
-                    alert('YOU WON!');
 
-                } else {
-                    alert('YOU LOST');
-                }
                 arcs.forEach(l => l.set_transparency(80));
                 let old_speed = speed;
                 speed = 0;
 
-                bubble.change_bubble_shape('red',4)
+                bubble.change_bubble_shape('red', 4)
                 bubble.info = true;
-                setTimeout(function () {
-                    speed = old_speed;
-                    bubble.info = false;
-                    arcs.forEach(l => l.set_transparency(255));
-                    bubble.change_bubble_shape('black',1)
-                    bubble.set_to_start()
-
-                }, 3000);
-
                 $('#id_task').val((bubble.is_within_arc(chosen_arc) === true) ? 1 : 0);
+                setTimeout(function () {
+                    $('form#form').submit();
+                }, 3000);
             }
-
-
         }
     }
     p.mousePressed = () => {
